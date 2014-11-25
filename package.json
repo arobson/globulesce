@@ -1,0 +1,38 @@
+{
+  "name": "globulesce",
+  "version": "0.1.0",
+  "description": "Applies a glob pattern to a set of files *after* excluding specific subfolders",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "gulp test"
+  },
+  "bin": {
+    "ns": "./bin/nonstop"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/arobson/globulesce"
+  },
+  "keywords": [
+    "nonstop",
+    "ci",
+    "cli",
+    "build"
+  ],
+  "author": "Alex Robson",
+  "license": "MIT License",
+  "bugs": {
+    "url": "https://github.com/arobson/globulesce/issues"
+  },
+  "homepage": "https://github.com/arobson/globulesce",
+  "devDependencies": {
+    "gulp": "^3.8.7",
+    "gulp-mocha": "^1.0.0",
+    "should": "^4.0.4"
+  },
+  "dependencies": {
+    "lodash": "^2.4.1",
+    "when": "^3.4.6",
+    "minimatch": "1.0.0"
+  }
+}
