@@ -47,6 +47,9 @@ function scan( dir, patterns, ignored, opts ) {
 	} else {
 		patterns = [ '**/*.*' ];
 	}
+	patterns = _.map( patterns, function( pattern ) {
+		return pattern.replace( /^[.][\/\\]/, '' );
+	} );
 	var settings = opts || { dot: true, nocase: true, matchBase: true };
 	var filters = _.map( patterns, function( pattern ) {
 		return minimatch.filter( pattern, settings );
@@ -63,8 +66,9 @@ function scan( dir, patterns, ignored, opts ) {
 		} )
 		.then( function( list ) {
 			return _.filter( list, function( file ) {
+				var localized = path.relative( dir, file );
 				return _.any( filters, function( f ) {
-					return f( file );
+					return f( localized );
 				} );
 			} );
 		} );

@@ -102,3 +102,21 @@ describe( 'when getting files in paths with no subdirectories', function() {
 		] );
 	} );
 } );
+
+describe( 'when matching localized patterns', function() {
+	var result;
+	before( function( done ) {
+		scan( './', [ './src/*.js' ] )
+			.then( function( files ) {
+				result = files;
+				done();
+			} );
+	} );
+
+	it( 'should return files in folder', function() {
+		var prefix = process.cwd();
+		result.should.eql( [
+			prefix + '/src/index.js'
+		] );
+	} );
+} );
