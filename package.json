@@ -1,13 +1,10 @@
 {
   "name": "globulesce",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Applies a glob pattern to a set of files *after* excluding specific subfolders",
   "main": "src/index.js",
   "scripts": {
     "test": "gulp test"
-  },
-  "bin": {
-    "ns": "./bin/nonstop"
   },
   "repository": {
     "type": "git",
