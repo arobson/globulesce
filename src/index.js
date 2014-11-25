@@ -27,10 +27,10 @@ function readFile( dir, file, ignored ) { // jshint ignore:line
 				if( stat.isDirectory() ) {
 					return readDir( path.join( dir, file ), ignored );
 				} else {
-					return path.join( dir, file );
+					return [ path.join( dir, file ) ];
 				}
 			} )
-			.then( null, function() {
+			.then( null, function( err ) {
 				return when( [] );
 			} );
 	}

@@ -84,3 +84,21 @@ describe( 'when getting all markdown files with custom ignore paths', function()
 		} ).should.be.true; // jshint ignore:line
 	} );
 } );
+
+describe( 'when getting files in paths with no subdirectories', function() {
+	var result;
+	before( function( done ) {
+		scan( './src', [ '**/*.js' ] )
+			.then( function( files ) {
+				result = files;
+				done();
+			} );
+	} );
+
+	it( 'should return files in folder', function() {
+		var prefix = process.cwd();
+		result.should.eql( [
+			prefix + '/src/index.js'
+		] );
+	} );
+} );
