@@ -57,9 +57,13 @@ function scan( dir, patterns, ignored, opts ) {
 
 	return readDir( dir, ignored )
 		.then( function( files ) {
-			return when.reduce( files, function( x, y ) {
-				return _.isArray( x ) ? x.concat( y ) : [ x, y ];
-			} );
+			if( files && files.length ) {
+				return when.reduce( files, function( x, y ) {
+					return _.isArray( x ) ? x.concat( y ) : [ x, y ];
+				} );
+			} else {
+				return [];
+			}
 		} )
 		.then( function( collections ) {
 			return _.flatten( collections );
