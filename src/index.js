@@ -50,7 +50,7 @@ function scan( dir, patterns, ignored, opts ) {
 	patterns = _.map( patterns, function( pattern ) {
 		return pattern.replace( /^[.][\/\\]/, '' );
 	} );
-	var settings = opts || { dot: true, nocase: true, matchBase: true };
+	var settings = opts || { dot: true, nocase: true, matchBase: false };
 	var filters = _.map( patterns, function( pattern ) {
 		return minimatch.filter( pattern, settings );
 	} );
