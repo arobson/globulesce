@@ -7,27 +7,37 @@ var minimatch = require( 'minimatch' );
 var readdir = lift( fs.readdir );
 var stat = lift( fs.stat );
 
-function readDir( dir, ignored ) {
+function readDir( dir, ignored, options ) {
 	dir = path.resolve( dir );
 	return readdir( dir )
 		.then( function( files ) {
 			var promises = _.map( files, function( file ) {
-				return readFile( dir, file, ignored );
+				return readFile( dir, file, ignored, options );
 			} );
 			return when.all( promises );
 		} );
 }
 
-function readFile( dir, file, ignored ) { // jshint ignore:line
+function readFile( dir, file, ignored, options ) { // jshint ignore:line
 	if( _.contains( ignored, file ) ) {
 		return when( [] );
 	} else {
-		return stat( path.join( dir, file ) )
+		var newPath = path.join( dir, file );
+		return stat( newPath )
 			.then( function( stat ) {
 				if( stat.isDirectory() ) {
-					return readDir( path.join( dir, file ), ignored );
+					if( options && options.directories ) {
+						return readDir( newPath, ignored, options )
+							.then( function( list ) {
+								return _.flatten( list.concat( newPath ) );
+							} );
+					} else {
+						return readDir( newPath, ignored );
+					}
+				} else if( !options || !options.directories ) {
+					return [ newPath ];
 				} else {
-					return [ path.join( dir, file ) ];
+					return [];
 				}
 			} )
 			.then( null, function( err ) {
@@ -55,7 +65,7 @@ function scan( dir, patterns, ignored, opts ) {
 		return minimatch.filter( pattern, settings );
 	} );
 
-	return readDir( dir, ignored )
+	return readDir( dir, ignored, settings )
 		.then( function( files ) {
 			if( files && files.length ) {
 				return when.reduce( files, function( x, y ) {

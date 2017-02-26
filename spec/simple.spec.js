@@ -19,6 +19,7 @@ describe( 'when getting all files', function() {
 			prefix + '/.gitignore',
 			prefix + '/.jshintrc',
 			prefix + '/.npmignore',
+			prefix + '/CHANGELOG.md',
 			prefix + '/README.md',
 			prefix + '/gulpfile.js',
 			prefix + '/package.json',
@@ -117,6 +118,25 @@ describe( 'when matching localized patterns', function() {
 		var prefix = process.cwd();
 		result.should.eql( [
 			prefix + '/src/index.js'
+		] );
+	} );
+} );
+
+describe( 'when getting directories', function() {
+	var result;
+	before( function( done ) {
+		scan( './', [ '*' ], undefined, { directories: true } )
+			.then( function( files ) {
+				result = files;
+				done();
+			} );
+	} );
+
+	it( 'should all subdirectories except the excluded folders', function() {
+		var prefix = process.cwd();
+		result.should.eql( [
+			prefix + '/spec',
+			prefix + '/src'
 		] );
 	} );
 } );

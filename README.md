@@ -5,13 +5,15 @@ The implementation is fully async and returns a promise.
 
 ## API
 
-###( path, match, ignore )
+###( path, match, ignore, { options } )
 
 __path__ the directory to start scanning in (this is inclusive).
 
 __match__ a glob string or an array of glob strings to match files against.
 
 __ignore__ a directory or list of directories to ignore. This defaults to [ '.git', 'node_modules' ]. If you'd like those folders included, provide an empty array.
+
+__options__ a set of optional flags to include. `directories` is a boolean that can be included to return directories *instead of* files.
 
 ```javascript
 var glob = require( 'globulesce' );
