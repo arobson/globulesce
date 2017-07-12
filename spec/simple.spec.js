@@ -20,6 +20,7 @@ describe('when getting all files', function () {
     result.should.eql([
       prefix + '/.gitignore',
       prefix + '/.npmignore',
+      prefix + '/.npmrc',
       prefix + '/.travis.yml',
       prefix + '/CHANGELOG.md',
       prefix + '/README.md',
