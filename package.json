@@ -1,20 +1,21 @@
 {
   "name": "globulesce",
-  "version": "0.1.6",
-  "description": "Applies a glob pattern to a set of files *after* excluding specific subfolders",
+  "version": "1.0.0",
+  "description": "applies a glob pattern to a set of files *after* excluding specific subfolders",
   "main": "src/index.js",
   "scripts": {
-    "test": "gulp test"
+    "pretest": "standard",
+    "test": "./node_modules/mocha/bin/mocha spec/*.spec.js",
+    "coverage": "nyc npm test",
+    "continuous": "./node_modules/mocha/bin/mocha spec/*.spec.js -w",
+    "release": "standard-version"
   },
   "repository": {
     "type": "git",
     "url": "git://github.com/arobson/globulesce"
   },
   "keywords": [
-    "nonstop",
-    "ci",
-    "cli",
-    "build"
+    "glob"
   ],
   "author": "Alex Robson",
   "license": "MIT",
@@ -23,13 +24,24 @@
   },
   "homepage": "https://github.com/arobson/globulesce",
   "devDependencies": {
-    "gulp": "^3.8.7",
-    "gulp-mocha": "^1.0.0",
-    "should": "^4.0.4"
+    "chai": "~2.1.1",
+    "chai-as-promised": "~4.3.0",
+    "coveralls": "^2.13.1",
+    "mocha": "^3.4.2",
+    "mocha-lcov-reporter": "^1.3.0",
+    "nyc": "^11.0.2",
+    "standard": "^10.0.2",
+    "standard-version": "^4.2.0"
   },
   "dependencies": {
-    "lodash": "^2.4.1",
-    "when": "^3.4.6",
-    "minimatch": "1.0.0"
+    "minimatch": "3.0.4"
+  },
+  "standard": {
+    "env": [
+      "mocha"
+    ],
+    "globals": [
+      "chai"
+    ]
   }
 }

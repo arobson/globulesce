@@ -1,7 +1,10 @@
 ## globulesce
 Need a list of files matching a set of glob patterns? Need to exclude certain subfolders? Need it fast? Try globulesce! It's as fast as its name is gross.
 
-The implementation is fully async and returns a promise.
+[![Build Status][travis-image]][travis-url]
+[![Coverage Status][coveralls-image]][coveralls-url]
+
+Fully async, promise based API.
 
 ## API
 
@@ -27,11 +30,14 @@ For my purposes, when I need to ignore a directory, I _always_ want to ignore it
 ## Dependencies
 This library does almost nothing and relies almost entirely on
 
- * when
- * lodash
  * minimatch
 
-All great libs.
-
-## Y U REINVENT WHEEL!?
+## Why Reinvent The Wheel!?
 I needed a way to scan a directory tree for files that wouldn't first eagerly scan `.git` and `node_modules`. There are several NPM libs that promise to do this but don't. The end result is that you wait a few seconds whilst they tear through an entire tree and then proceed to toss a bunch of results out (or don't even do that).
+
+None of my specific use cases care about what are in `.git` or `node_modules` *and* are time sensitive.
+
+[travis-url]: https://travis-ci.org/arobson/globulesce
+[travis-image]: https://travis-ci.org/arobson/globulesce.svg?branch=master
+[coveralls-url]: https://coveralls.io/github/arobson/globulesce?branch=master
+[coveralls-image]: https://coveralls.io/repos/github/arobson/globulesce/badge.svg?branch=master

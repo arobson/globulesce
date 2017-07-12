@@ -1,3 +1,10 @@
+## 1.0.0
+
+ * drop lodash and when
+ * switch to standard code style
+ * add travis build & coveralls
+ * drop gulp and move to nyc for local coverage
+
 ## 0.1.*
 
 ### 0.1.6
