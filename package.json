@@ -39,9 +39,6 @@
   "standard": {
     "env": [
       "mocha"
-    ],
-    "globals": [
-      "chai"
     ]
   }
 }
