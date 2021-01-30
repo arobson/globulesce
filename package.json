@@ -1,6 +1,6 @@
 {
   "name": "globulesce",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "applies a glob pattern to a set of files *after* excluding specific subfolders",
   "main": "src/index.js",
   "scripts": {
