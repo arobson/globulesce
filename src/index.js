@@ -76,7 +76,7 @@ function readFile (dir, file, ignored, options) {
           if (stat.isDirectory()) {
             if (options && options.directories) {
               return readDir(newPath, ignored, options)
-                        .then(list => flatten(list.concat(newPath)))
+                .then(list => flatten(list.concat(newPath)))
             } else {
               return readDir(newPath, ignored)
             }
@@ -93,14 +93,14 @@ function readFile (dir, file, ignored, options) {
 
 function scan (dir, patterns, ignored, opts) {
   if (!ignored) {
-    ignored = [ '.git', 'node_modules' ]
+    ignored = ['.git', 'node_modules']
   }
   if (isString(patterns)) {
-    patterns = [ patterns ]
+    patterns = [patterns]
   } else if (Array.isArray(patterns) && !isEmpty(patterns)) {
     // do nothing
   } else {
-    patterns = [ '**/*.*' ]
+    patterns = ['**/*.*']
   }
   patterns = patterns.map(pattern => pattern.replace(/^[.][/\\]/, ''))
   const settings = opts || { dot: true, nocase: true, matchBase: false }
@@ -112,7 +112,7 @@ function scan (dir, patterns, ignored, opts) {
     .then(files => {
       if (files && files.length) {
         return files.reduce((x, y) => {
-          return Array.isArray(x) ? x.concat(y) : [ x, y ]
+          return Array.isArray(x) ? x.concat(y) : [x, y]
         })
       } else {
         return []
@@ -123,7 +123,7 @@ function scan (dir, patterns, ignored, opts) {
     })
     .then(list => {
       return filter(list, file => {
-        var localized = path.relative(dir, file)
+        const localized = path.relative(dir, file)
         return any(filters, f => f(localized))
       })
     })
