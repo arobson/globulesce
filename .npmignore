@@ -3,3 +3,10 @@ tmp/
 node_modules/
 spec/
 .nyc_output
+coverage/
+.claude/
+src/
+*.tsbuildinfo
+tsconfig.json
+vitest.config.ts
+Makefile

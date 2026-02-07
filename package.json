@@ -1,14 +1,27 @@
 {
   "name": "globulesce",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "applies a glob pattern to a set of files *after* excluding specific subfolders",
-  "main": "src/index.js",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
   "scripts": {
-    "pretest": "standard",
-    "test": "./node_modules/mocha/bin/mocha spec/*.spec.js",
-    "coverage": "nyc npm test",
-    "continuous": "./node_modules/mocha/bin/mocha spec/*.spec.js -w",
-    "release": "standard-version"
+    "build": "tsc",
+    "pretest": "npm run build",
+    "test": "vitest run",
+    "coverage": "vitest run --coverage",
+    "continuous": "vitest",
+    "clean": "rm -rf dist/ coverage/ *.tsbuildinfo",
+    "release": "make release"
   },
   "repository": {
     "type": "git",
@@ -24,21 +37,14 @@
   },
   "homepage": "https://github.com/arobson/globulesce",
   "devDependencies": {
-    "chai": "*",
-    "chai-as-promised": "*",
-    "coveralls": "*",
-    "mocha": "*",
-    "mocha-lcov-reporter": "*",
-    "nyc": "*",
-    "standard": "*",
-    "standard-version": "*"
+    "@types/minimatch": "^5.1.2",
+    "@types/node": "^22.10.5",
+    "@vitest/coverage-v8": "^2.1.8",
+    "standard-version": "*",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
   },
   "dependencies": {
-    "minimatch": "*"
-  },
-  "standard": {
-    "env": [
-      "mocha"
-    ]
+    "minimatch": "^10.0.1"
   }
 }
